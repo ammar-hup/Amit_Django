@@ -1,0 +1,28 @@
+body {
+    background: #f8f9fa;
+    font-family: 'Georgia', serif;
+}
+
+.card {
+    transition: transform 0.2s;
+    border: none;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+.navbar-brand {
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+.content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.badge {
+    font-size: 0.7rem;
+}

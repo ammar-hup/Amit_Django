@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Latest Posts - AMIT Blog{% endblock %}
+
+{% block content %}
+{{ today }}
+<p class="text-muted">Total Posts: {{ total_posts }}</p>
+<div class="row">
+    <div class="col-md-8">
+        <h1 class="mb-4">Latest Posts</h1>
+        {% for post in All_posts %}
+          <div class="card mb-4 shadow-sm">
+              <div class="card-body">
+                  <h3 class="card-title">
+                      <a href="{% url 'post_detail' post.pk %}" class="text-decoration-none text-danger">
+                          {{ post.title }}
+                      </a>
+                  </h3>
+                  <p class="text-muted small">
+                      {{ post.created_at|date:"d M Y" }}
+                      {% if not post.published %} 
+                          <span class="badge bg-secondary">Draft</span>
+                      {% else %}
+                          <span class="badge bg-success">Published</span>
+                      {% endif %}
+                  </p>
+                  <p class="card-text">{{ post.content|truncatewords:40 }}</p>
+                  <a href="{% url 'post_detail' post.pk %}" class="btn btn-outline-danger btn-sm">Read More</a>
+              </div>
+          </div>
+        {% empty %}
+        <p class="text-muted">No posts yet. <a href="/admin/">Add one in admin</a>.</p>
+        {% endfor %}
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-light p-3">
+            <h5>About</h5>
+            <p>A simple blog built with Django during AMIT Bootcamp.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

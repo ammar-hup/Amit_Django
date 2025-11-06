@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}{{ post.title }} - AMIT Blog{% endblock %}
+
+{% block content %}
+{{ reading_time }} min read
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <article class="card shadow-lg p-4">
+            <h1 class="text-danger mb-3">{{ post.title }}</h1>
+            <p class="text-muted small mb-4">
+                Published on {{ post.created_at|date:"d F Y" }}
+                {% if not post.published %}<span class="badge bg-secondary ms-2">Draft</span>{% endif %}
+            </p>
+            <div class="content lh-lg">
+                {{ post.content|linebreaks }}
+            </div>
+            <hr>
+            <a href="{% url 'post_list' %}" class="btn btn-outline-danger">Back to Posts</a>
+        </article>
+    </div>
+</div>
+{% endblock %}
