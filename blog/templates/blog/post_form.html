@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Create Post - AMIT Blog{% endblock %}
+
+{% block content %}
+<form method="post" class="card shadow-lg p-4">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-danger mt-3">Submit</button>
+</form>
+{% endblock %}
