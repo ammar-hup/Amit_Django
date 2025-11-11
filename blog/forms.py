@@ -1,5 +1,6 @@
 from django import forms
-from .models import Post
+from django.contrib.auth.forms import UserCreationForm
+from .models import Post, Author
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -29,21 +30,19 @@ class PostForm(forms.ModelForm):
     #         raise forms.ValidationError("Content must be at least 20 words.")
     #     return content
 
-# class SignUpForm(UserCreationForm):
-#     email = forms.EmailField(required=True)
-#     first_name = forms.CharField(max_length=30)
-#     last_name = forms.CharField(max_length=30)
+class SignUpForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+    first_name = forms.CharField(max_length=30)
+    last_name = forms.CharField(max_length=30)
 
-#     class Meta:
-#         model = Author
-#         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
+    class Meta:
+        model = Author
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
 
-#     def save(self, commit=True):
-#         user = super().save(commit=False)
-#         user.email = self.cleaned_data['email']
-#         if commit:
-#             user.save()
-#         return user
-
-
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.email = self.cleaned_data['email']
+        if commit:
+            user.save()
+        return user
 

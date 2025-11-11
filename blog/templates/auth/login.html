@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Login - AMIT Blog{% endblock %}
+
+{% block content %}
+<form method="post" class="card shadow-lg p-2 m-1">
+    {% csrf_token %}
+    username : <input type="text" name="username" class="form-control mb-2" required>
+    password : <input type="password" name="password" class="form-control mb-2" required>
+    <button type="submit" class="btn btn-danger mt-3">Login</button>
+</form>
+{% endblock %}
