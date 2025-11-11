@@ -20,6 +20,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),  # For built-in auth views
     
 ]
 # http://127.0.0.1:8000/blog/

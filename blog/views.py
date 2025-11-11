@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .models import Post, Author
 from .forms import PostForm, SignUpForm
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, logout, authenticate, get_user_model
 # Create your views here.
 
 
@@ -66,7 +66,7 @@ def signup(request):
         'form': form,
         'title': 'Sign Up',
     }
-    return render(request, 'auth/signup.html', context)
+    return render(request, 'registration/signup.html', context)
 
 def login_view(request):
     if request.method == 'POST':
@@ -76,7 +76,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             return redirect('post_list')
-    return render(request, 'auth/login.html', {'title': 'Log In'})
+    return render(request, 'registration/login.html', {'title': 'Log In'})
 
 @login_required
 def logout_view(request):
