@@ -22,7 +22,7 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('accounts/', include('accounts.urls')),  # Include accounts app URLs
     path('accounts/', include('django.contrib.auth.urls')),  # For built-in auth views login, logout, password management
-    
+    path('api/', include('api.urls')),  # API URLs
 ]
 # http://127.0.0.1:8000/blog/
 # main proj url + app url + view url = final url
