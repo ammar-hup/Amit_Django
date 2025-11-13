@@ -15,4 +15,4 @@ staticfiles/
 media/
 
 # MD
-*.md
+#*.md
