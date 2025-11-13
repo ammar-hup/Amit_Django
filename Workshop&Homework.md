@@ -9,3 +9,6 @@
 6. create the templates folder and add the required configrations in the sittings file
 7. connect the app/urls.py to ur project/urls.py
 8. create the form.py for the spasific forms and the views for these forms
+9. add the form for createing tasks
+10. enhance the project styles (if u have time)
+11. add the DRF (Django Rest Framwork) to ur tasks app to demonistrate the DRF and how its working
