@@ -2,10 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .models import Post, Author
-from .forms import PostForm, SignUpForm
-from django.contrib.auth import login, logout, authenticate, get_user_model
-# Create your views here.
-
+from .forms import PostForm
 
 # View all posts
 @login_required
@@ -52,33 +49,4 @@ def post_create(request):
     }
     return render(request, 'blog/post_form.html', context)
 
-def signup(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('post_list')
-        
-    else:
-        form = SignUpForm()
-    context = {
-        'form': form,
-        'title': 'Sign Up',
-    }
-    return render(request, 'registration/signup.html', context)
 
-def login_view(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('post_list')
-    return render(request, 'registration/login.html', {'title': 'Log In'})
-
-@login_required
-def logout_view(request):
-    logout(request)
-    return redirect('post_list')

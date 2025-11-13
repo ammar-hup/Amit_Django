@@ -1,15 +1,13 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from first_django import settings
 
-class Author(AbstractUser):
+class Author(models.Model):
+    # username, password, email, first_name, last_name and bio , profile_picture are in CustomUser model
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=True)
-    profile_pic = models.ImageField(upload_to='media/profile_pics/', blank=True, null=True) # optional field
 
     def __str__(self):
-        return self.get_full_name() or self.username
-    class Meta:
-        verbose_name = 'author'
-        verbose_name_plural = 'authors'
+        return self.user.username
 
 class Post(models.Model):
     title = models.CharField(max_length=100)

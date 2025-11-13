@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts',
     'blog',
 ]
 
@@ -133,8 +134,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'blog.Author'
-
-LOGIN_URL = 'login' # used by @login_required
+AUTH_USER_MODEL = 'accounts.CustomUser'  # Custom user model
 LOGIN_REDIRECT_URL = 'post_list'    # after login
 LOGOUT_REDIRECT_URL = 'post_list'   # after logout
+LOGIN_URL = 'login' # used by @login_required

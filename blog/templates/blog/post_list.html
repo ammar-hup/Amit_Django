@@ -9,7 +9,7 @@
         <h1 class="mb-4">Latest Posts</h1>
         {% for post in All_posts %}
         <p class="text-muted small">
-            By <strong>{{ post.author.username }}</strong>
+            By <strong>{{ post.author.user.username }}</strong>
         </p>
         <div class="card mb-4 shadow-sm">
             <div class="card-body">
