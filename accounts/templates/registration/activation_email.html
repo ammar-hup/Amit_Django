@@ -1,0 +1,12 @@
+Subject: Activate your AMIT Blog account
+
+Hi {{ user.username }},
+
+Please click the link below to confirm your email and activate your account:
+
+http://{{ domain }}{% url 'activate' uid token %}
+
+This link will expire in {{ ACCOUNT_ACTIVATION_DAYS }} days.
+
+Thanks,
+AMIT Blog Team

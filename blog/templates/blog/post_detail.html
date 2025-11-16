@@ -15,7 +15,7 @@
                 {{ post.content|linebreaks }}
             </div>
             <div class="content lh-lg">
-                Craeted by: {{ post.author.get_full_name|default:post.author.username }}
+                Craeted by: {{ post.author.user.username }}
             </div>
             <hr>
             <a href="{% url 'post_list' %}" class="btn btn-outline-danger">Back to Posts</a>

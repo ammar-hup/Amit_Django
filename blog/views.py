@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.views.decorators.cache import cache_page
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .models import Post, Author
@@ -6,6 +7,7 @@ from .forms import PostForm
 
 # View all posts
 @login_required
+# @cache_page(60 * 1)  # Cache this view for 15 minutes
 def post_list(request):
     # select * from posts => Post.objects.all() "ORM"
     All_posts = Post.objects.all() 

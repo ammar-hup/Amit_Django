@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from first_django import settings
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
@@ -24,6 +26,14 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),  # For built-in auth views login, logout, password management
     path('api/', include('api.urls')),  # API URLs
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+        path('silk/', include('silk.urls', namespace='silk')),
+    ] + urlpatterns
+    
 # http://127.0.0.1:8000/blog/
 # main proj url + app url + view url = final url
 # http://127.0.0.1:8000/blog/all_posts/

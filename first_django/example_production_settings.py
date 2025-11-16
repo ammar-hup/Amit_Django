@@ -26,15 +26,10 @@ SECRET_KEY = config("DJANGO_SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['yourproductiondomain.com']
 
-INTERNAL_IPS = ['127.0.0.1']
-
-DEBUG_TOOLBAR_CONFIG = {
-    'SHOW_TOOLBAR_CALLBACK': lambda request: True,
-}
 
 # Application definition
 
@@ -48,15 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'rest_framework',
     'accounts',
-    'blog',
 ]
 
-# Add debug toolbar in installed apps
-INSTALLED_APPS += ['debug_toolbar','silk']
-
 MIDDLEWARE = [
-    'silk.middleware.SilkyMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -93,17 +82,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-# cache settings
-CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379/1',
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-        }
     }
 }
 
@@ -161,20 +139,3 @@ AUTH_USER_MODEL = 'accounts.CustomUser'  # Custom user model
 LOGIN_REDIRECT_URL = 'post_list'    # after login
 LOGOUT_REDIRECT_URL = 'login'   # after logout
 LOGIN_URL = 'login' # used by @login_required
-
-SITE_ID = 1
-# Email settings
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Use SMTP in prod
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'your@gmail.com'
-# EMAIL_HOST_PASSWORD = 'app_password'
-DEFAULT_FROM_EMAIL = 'AMIT Blog <no-reply@amitblog.com>'
-
-# Activation link expires in 3 days
-ACCOUNT_ACTIVATION_DAYS = 3
-
-# Password reset link expires in 24 hours
-PASSWORD_RESET_TIMEOUT = 3600 * 24
